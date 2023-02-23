@@ -5,7 +5,7 @@ import static spark.Spark.*;
 
 public class SparkServer {
     public static void main(String[] args) {
-        get("/", (req, res) -> "Hello, World! spark auto restart 2 ");
+        get("/", (req, res) -> "Hello, World! spark auto restart ");
         
         get ("/exit", (req, res) -> {
             stop();

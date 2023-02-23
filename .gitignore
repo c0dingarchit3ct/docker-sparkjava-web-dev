@@ -27,3 +27,12 @@ hs_err_pid*
 
 #ignore spring boot files
 target/
+
+#gradle
+.gradle/
+
+#build
+build/
+
+#reload trigger
+reload-trigger.txt
