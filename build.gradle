@@ -1,0 +1,45 @@
+plugins {
+	id 'java'
+	id 'application'
+}
+
+group = 'klf.api'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+mainClassName = 'klf.api.secured.SparkServer'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'com.sparkjava:spark-core:2.9.4'
+	// implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+//	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+	// implementation 'org.springframework.boot:spring-boot-starter-web'
+	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	// implementation 'com.h2database:h2'
+	// testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+// -----Build and reload ----- 
+task buildAndReload  {
+    dependsOn build
+    mustRunAfter build 
+	   // buildAndReload must run after the source files are built into class files using build task
+    doLast {
+        new File(".", "reload-trigger.txt").text = "${System.currentTimeMillis()}" // update trigger file in root folder for hot reload		
+		// println "output : $stdout"
+		exec {
+			commandLine './restart-server.sh'
+			// standardOutput = stdout;
+		}
+
+    }
+}
