@@ -4,14 +4,9 @@ services:
   app :
     image: klf-spark-web
     ports:
-      - "8080:8080"
+      - "8082:8082"
       - "4567:4567"
     environment:
-      - MYSQL_ROOT_PASSWORD=
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_USER=petclinic
-      - MYSQL_PASSWORD=petclinic
-      - MYSQL_DATABASE=petclinic
     volumes:
        - ./:/app
   
